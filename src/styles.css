@@ -1,0 +1,146 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * FoodLoop design tokens — Méditerranée palette.
+ * Citrus Zest #FFA62B, Sea Breeze #86C5FF, Amalfi Tile #2E5AA7, Cream Gelato #F8E6A0.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-citrus: var(--citrus);
+  --color-citrus-foreground: var(--citrus-foreground);
+  --color-sea: var(--sea);
+  --color-amalfi: var(--amalfi);
+  --color-cream: var(--cream);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Brand palette */
+  --citrus: oklch(0.78 0.17 65);          /* #FFA62B */
+  --citrus-foreground: oklch(0.18 0.03 60);
+  --sea: oklch(0.83 0.10 240);            /* #86C5FF */
+  --amalfi: oklch(0.45 0.16 260);         /* #2E5AA7 */
+  --cream: oklch(0.94 0.07 95);           /* #F8E6A0 */
+
+  --background: oklch(0.985 0.012 95);    /* warm off-white, gelato-ish */
+  --foreground: oklch(0.22 0.04 260);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  --primary: var(--citrus);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: var(--amalfi);
+  --secondary-foreground: oklch(1 0 0);
+
+  --muted: oklch(0.96 0.015 90);
+  --muted-foreground: oklch(0.48 0.04 260);
+
+  --accent: var(--sea);
+  --accent-foreground: var(--amalfi);
+
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.9 0.02 90);
+  --input: oklch(0.92 0.02 90);
+  --ring: var(--citrus);
+
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--citrus);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: var(--cream);
+  --sidebar-accent-foreground: var(--amalfi);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+.dark {
+  --background: oklch(0.2 0.04 260);
+  --foreground: oklch(0.96 0.01 90);
+  --card: oklch(0.25 0.04 260);
+  --card-foreground: oklch(0.96 0.01 90);
+  --popover: oklch(0.25 0.04 260);
+  --popover-foreground: oklch(0.96 0.01 90);
+  --primary: var(--citrus);
+  --primary-foreground: oklch(0.18 0.03 60);
+  --secondary: var(--sea);
+  --secondary-foreground: oklch(0.2 0.04 260);
+  --muted: oklch(0.3 0.04 260);
+  --muted-foreground: oklch(0.75 0.02 90);
+  --accent: oklch(0.3 0.04 260);
+  --accent-foreground: var(--sea);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--citrus);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    /* Safe-area for future iOS native build */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
