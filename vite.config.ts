@@ -5,6 +5,8 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const supabaseUrl = env.VITE_SUPABASE_URL ?? env.SUPABASE_URL ?? "";
@@ -23,15 +25,14 @@ export default defineConfig(({ mode }) => {
     "import.meta.env.VITE_SUPABASE_URL": JSON.stringify(supabaseUrl),
     "import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY": JSON.stringify(supabasePublishableKey),
   },
-  plugins: [
-    tsConfigPaths(),
-    tailwindcss(),
-    tanstackStart({
-      server: { entry: "server",
-       },
+  plugins: [tsConfigPaths(), tailwindcss(), tanstackStart({
+    server: { entry: "server",
+     },
 
-    }),
-    react(),
-  ],
+  }), react(), cloudflare({
+    viteEnvironment: {
+      name: "ssr"
+    }
+  })],
   };
 });
