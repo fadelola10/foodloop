@@ -27,7 +27,10 @@ export default defineConfig(({ mode }) => {
     tsConfigPaths(),
     tailwindcss(),
     tanstackStart({
-      server: { entry: "server" },
+      server: { entry: "server"
+                preset: "vercel"
+       },
+
     }),
     react(),
   ],
